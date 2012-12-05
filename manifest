@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.3
+apiversion: 2
+description: Custom AssetPicker
+author: hiphapis
+license: MIT
+copyright: Copyright (c) 2012 by OxygenComputingInc.
+
+
+# these should not be edited
+name: assetpicker
+moduleid: com.oxgcp.assetpicker
+guid: 005b2817-0a3b-4aee-ad34-dd8ac32e5cf7
+platform: iphone
+minsdk: 2.1.2.GA
