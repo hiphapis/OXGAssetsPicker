@@ -111,7 +111,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ALAssetsGroup *group = [groups objectAtIndex:indexPath.row];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[group valueForProperty:ALAssetsGroupPropertyName], @"groupName", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[group valueForProperty:ALAssetsGroupPropertyName], @"groupName", [group numberOfAssets], @"numberOfAssets", nil];
     
     [self.proxy fireEvent:@"album:selected" withObject:dic];
 }
