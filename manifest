@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.3.2
+apiversion: 2
+description: Assets Picker with EXIF
+author: hiphapis & metacortex
+license: MIT
+copyright: Copyright (c) 2012 by OxygenComputingInc.
+
+
+# these should not be edited
+name: oxgassetspicker
+moduleid: com.oxgcp.assetspicker
+guid: 8e9ac51a-a6b2-46fc-bc3f-92ec574d4b01
+platform: iphone
+minsdk: 2.1.1.GA
