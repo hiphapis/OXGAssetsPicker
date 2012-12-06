@@ -1,11 +1,20 @@
 OXGAssetPicker
 ==============
 It's ALAsset Picker For Titanium.  
-OXGAssetPicker Support EXIF
 
+Features
+--------
+- Album View
+- Photo View
+- Support EXIF
+
+Screenshots
+-----------
 ![Albums](https://github.com/hiphapis/OXGAssetsPicker/blob/master/screenshots/albums.png?raw=true)
 ![Photos](https://github.com/hiphapis/OXGAssetsPicker/blob/master/screenshots/photos.png?raw=true)
 
+Demo
+----
 You can show Album View & Photo View.  
 Follow this code (from example/app.js)
 
@@ -105,3 +114,7 @@ PHOTO
  - exif
 - selected
 - url
+
+EXIF
+----
+TBD
