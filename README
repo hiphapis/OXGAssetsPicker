@@ -31,8 +31,8 @@ Follow this code (from example/app.js)
 
 			var photoWin = Titanium.UI.createWindow({ title: ae.groupName });
 			var photo = assetpicker.createPhotoView({
-					groupName: ae.groupName,
-					filter: "photo",
+					groupName: ae.groupName, // load all photos If you remove property of groupName
+					filter: "photo", // or "video", "all"
 					top:0,
 					left:0,
 					width:320,
