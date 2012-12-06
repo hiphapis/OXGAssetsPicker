@@ -14,11 +14,10 @@ Follow this code (from example/app.js)
 	var nav = Titanium.UI.iPhone.createNavigationGroup({ window: albumWin });
 	win.add(nav);
 
-	// TODO: write your module tests here
-	var assetpicker = require('com.oxgcp.assetpicker');
-	Ti.API.info("module is => " + assetpicker);
+	var OXGAssetsPicker = require('com.oxgcp.assetpicker');
+	Ti.API.info("module is => " + OXGAssetsPicker);
 
-	var album = assetpicker.createAlbumView({
+	var album = OXGAssetsPicker.createAlbumView({
 			top:0,
 			left:0,
 			width:Ti.UI.FILL,
@@ -30,7 +29,7 @@ Follow this code (from example/app.js)
 			console.log(ae);
 
 			var photoWin = Titanium.UI.createWindow({ title: ae.groupName });
-			var photo = assetpicker.createPhotoView({
+			var photo = OXGAssetsPicker.createPhotoView({
 					groupName: ae.groupName, // load all photos If you remove property of groupName
 					filter: "photo", // or "video", "all"
 					top:0,
@@ -57,3 +56,43 @@ Help: [Step 0: Setting Up your Module Environment](http://docs.appcelerator.com/
 
 If you want Packagin and Distribution Then read it.  
 [Step 3: Packaging your Module for Distribution](http://docs.appcelerator.com/titanium/latest/#!/guide/iOS_Module_Development_Guide-section-29004946_iOSModuleDevelopmentGuide-Step3%3APackagingyourModuleforDistribution)
+
+
+ALBUM
+-----
+	var win = Ti.UI.createWindow({});
+	var album = OXGAssetsPicker.createAlbumView({
+			top:0,
+			left:0,
+			width:Ti.UI.FILL,
+			height:Ti.UI.FILL,
+			backgroundColor:'white',
+	});
+	album.addEventListener('album:selected', function(ae) {
+		console.log("groupName: " + ae.groupName);
+		console.log("numberOfAssets: " + ae.numberOfAssets);
+	});
+	win.add(album);
+
+### Return
+- groupName: return selected group name.
+- numberOfAssets : return assets count of selected group.
+
+PHOTO
+-----
+	var win = Ti.UI.createWindow({});
+	var photo = OXGAssetsPicker.createPhotoView({
+			top:0,
+			left:0,
+			width:Ti.UI.FILL,
+			height:Ti.UI.FILL,
+			backgroundColor:'white',
+	});
+	photo.addEventListener('photo:selected', function(pe) {
+		console.log(pe);
+	});
+	win.add(photo);
+
+### Property
+- groupName: 
+- filter: photo, video, all

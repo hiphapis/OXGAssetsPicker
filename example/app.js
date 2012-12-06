@@ -9,11 +9,10 @@ var albumWin = Ti.UI.createWindow({ title: "Albums" });
 var nav = Titanium.UI.iPhone.createNavigationGroup({ window: albumWin });
 win.add(nav);
 
-// TODO: write your module tests here
-var assetpicker = require('com.oxgcp.assetpicker');
-Ti.API.info("module is => " + assetpicker);
+var OXGAssetsPicker = require('com.oxgcp.OXGAssetsPicker');
+Ti.API.info("module is => " + OXGAssetsPicker);
 
-var album = assetpicker.createAlbumView({
+var album = OXGAssetsPicker.createAlbumView({
 		top:0,
 		left:0,
 		width:Ti.UI.FILL,
@@ -25,7 +24,7 @@ album.addEventListener('album:selected', function(ae) {
 		console.log(ae);
 
 		var photoWin = Titanium.UI.createWindow({ title: ae.groupName });
-		var photo = assetpicker.createPhotoView({
+		var photo = OXGAssetsPicker.createPhotoView({
 				groupName: ae.groupName, // load all photos If you remove property of groupName
 				filter: "photo", // or "video", "all"
 				top:0,
