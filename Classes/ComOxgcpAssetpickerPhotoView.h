@@ -19,6 +19,7 @@
     
     BOOL multiple;
     NSString *groupName;
+    NSString *filter;
 }
 
 @end

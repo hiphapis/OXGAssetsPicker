@@ -17,6 +17,10 @@
     groupName = _groupName;
 }
 
+- (id)setFilter:(id)_filter {
+    filter = _filter;
+}
+
 -(void)dealloc {
     RELEASE_TO_NIL(assets);
     RELEASE_TO_NIL(tableView);
@@ -64,7 +68,13 @@
 //            NSLog(@"Asset[Photo]: loadAssets #1-1");
             if (groupName == nil || [[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:groupName]) {
 //                NSLog(@"Asset[Photo]: loadAssets #1-2");
-                [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+                if (filter == @"photo") {
+                    [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+                }
+                else if (filter == @"video") {
+                    [group setAssetsFilter:[ALAssetsFilter allVideos]];
+                }
+
                 [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
                     if( result != nil ) {
 //                        NSLog(@"Asset[Photo]: loadAssets #1-3: %@ = %@", [group valueForProperty:ALAssetsGroupPropertyName], groupName);

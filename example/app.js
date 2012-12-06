@@ -27,6 +27,7 @@ album.addEventListener('album:selected', function(ae) {
 		var photoWin = Titanium.UI.createWindow({ title: ae.groupName });
 		var photo = assetpicker.createPhotoView({
 				groupName: ae.groupName,
+				filter: "photo",
 				top:0,
 				left:0,
 				width:320,
