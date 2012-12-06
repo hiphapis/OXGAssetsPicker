@@ -114,7 +114,3 @@ PHOTO
  - exif
 - selected
 - url
-
-EXIF
-----
-TBD
