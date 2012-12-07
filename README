@@ -1,6 +1,6 @@
-OXGAssetPicker
+OXGAssetsPicker
 ==============
-It's ALAsset Picker For Titanium.  
+It's ALAssets Picker For Titanium.  
 
 Features
 --------
