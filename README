@@ -32,7 +32,7 @@ Follow this code (from example/app.js)
 			left:0,
 			width:Ti.UI.FILL,
 			height:Ti.UI.FILL,
-			backgroundColor:'white',
+			backgroundColor:'#000fff',
 	});
 	albumWin.add(album);
 	album.addEventListener('album:selected', function(ae) {
@@ -42,11 +42,11 @@ Follow this code (from example/app.js)
 			var photo = OXGAssetsPicker.createPhotoView({
 					groupName: ae.groupName, // load all photos If you remove property of groupName
 					filter: "photo", // or "video", "all"
+					backgroundColor:'#fff000', // set clearColor If you remove property of backgroundColor
 					top:0,
 					left:0,
 					width:320,
 					height:460,
-					backgroundColor:'white',
 					multiple: true,
 			});
 			photoWin.add(photo);
@@ -76,7 +76,7 @@ ALBUM
 			left:0,
 			width:Ti.UI.FILL,
 			height:Ti.UI.FILL,
-			backgroundColor:'white',
+			backgroundColor:'#000fff',
 	});
 	album.addEventListener('album:selected', function(ae) {
 		console.log("groupName: " + ae.groupName);
@@ -96,7 +96,7 @@ PHOTO
 			left:0,
 			width:Ti.UI.FILL,
 			height:Ti.UI.FILL,
-			backgroundColor:'white',
+			backgroundColor:'#fff000',
 	});
 	photo.addEventListener('photo:selected', function(pe) {
 		console.log(pe);

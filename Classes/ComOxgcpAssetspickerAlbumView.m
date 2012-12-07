@@ -12,8 +12,20 @@
 -(void)dealloc {
     RELEASE_TO_NIL(groups);
     RELEASE_TO_NIL(tableView);
+    RELEASE_TO_NIL(backgroundColor);
     [super dealloc];
 }
+
+
+- (id)setBackgroundColor_:(id)_backgroundColor {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:_backgroundColor];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    backgroundColor = [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
+
 
 -(UITableView *)tableView {
     //    NSLog(@"Asset[Album]: TableView: init");
@@ -26,10 +38,8 @@
         tableView.dataSource = self;
         tableView.rowHeight = 57.0f;
         tableView.scrollsToTop = YES;
-        tableView.backgroundColor = [UIColor colorWithRed:0.9f
-                                                    green:0.9f
-                                                     blue:0.9f
-                                                    alpha:1.0f];
+        tableView.backgroundColor = (backgroundColor)? backgroundColor : [UIColor clearColor];
+        
         [self addSubview:tableView];
         
         //        NSLog(@"Asset[Album]: TableView: created");

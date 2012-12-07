@@ -9,6 +9,15 @@
 
 @implementation ComOxgcpAssetspickerPhotoView
 
+-(void)dealloc {
+    RELEASE_TO_NIL(assets);
+    RELEASE_TO_NIL(tableView);
+    RELEASE_TO_NIL(groupName);
+    RELEASE_TO_NIL(filter);
+    RELEASE_TO_NIL(backgroundColor);
+    [super dealloc];
+}
+
 - (id)setMultiple_:(id)_multiple {
     multiple = [_multiple boolValue];
 }
@@ -21,10 +30,12 @@
     filter = _filter;
 }
 
--(void)dealloc {
-    RELEASE_TO_NIL(assets);
-    RELEASE_TO_NIL(tableView);
-    [super dealloc];
+- (id)setBackgroundColor_:(id)_backgroundColor {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:_backgroundColor];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    backgroundColor = [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
 -(UITableView *)tableView {
@@ -40,10 +51,7 @@
         tableView.scrollsToTop = YES;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-        tableView.backgroundColor = [UIColor colorWithRed:0.9f
-                                                    green:0.9f
-                                                     blue:0.9f
-                                                    alpha:1.0f];
+        tableView.backgroundColor = (backgroundColor)? backgroundColor : [UIColor clearColor];
         [self addSubview:tableView];
         
         //        NSLog(@"Asset[Photo]: TableView - created");
@@ -253,7 +261,7 @@
         button.tag = firstPhotoInCell + currentPhotoIndex;
         
         NSString *resourceurl = [[NSBundle mainBundle] resourcePath];
-        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/modules/%@/%@", resourceurl, @"com.oxgcp.assetpicker", @"Overlay.png"]];
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/modules/%@/%@", resourceurl, @"com.oxgcp.assetspicker", @"Overlay.png"]];
         UIImage *overlayImage = [UIImage imageWithContentsOfFile:[url path]];
         [button setImage:overlayImage forState:UIControlStateSelected];
         [button setSelected:[[dic objectForKey:@"selected"] isEqualToString:@"true"]];

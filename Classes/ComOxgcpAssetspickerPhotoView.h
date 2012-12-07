@@ -20,6 +20,7 @@
     BOOL multiple;
     NSString *groupName;
     NSString *filter;
+    UIColor *backgroundColor;
 }
 
 @end

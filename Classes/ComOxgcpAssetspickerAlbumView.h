@@ -11,6 +11,7 @@
 @interface ComOxgcpAssetspickerAlbumView : TiUIView <UITableViewDataSource, UITableViewDelegate> {
     UITableView *tableView;
     NSMutableArray *groups;
+    UIColor *backgroundColor;
 }
 
 @end

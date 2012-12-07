@@ -12,7 +12,7 @@ var album = OXGAssetsPicker.createAlbumView({
 		left:0,
 		width:Ti.UI.FILL,
 		height:Ti.UI.FILL,
-		backgroundColor:'white',
+		backgroundColor:'#000fff',
 });
 albumWin.add(album);
 album.addEventListener('album:selected', function(ae) {
@@ -26,7 +26,7 @@ album.addEventListener('album:selected', function(ae) {
 				left:0,
 				width:320,
 				height:460,
-				backgroundColor:'white',
+				backgroundColor:'#fff000',
 				multiple: true,
 		});
 		photoWin.add(photo);
