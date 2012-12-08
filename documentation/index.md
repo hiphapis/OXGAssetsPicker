@@ -1,16 +1,16 @@
-# assetpicker Module
+# oxgassetspicker Module
 
 ## Description
 
 TODO: Enter your module description here
 
-## Accessing the assetpicker Module
+## Accessing the oxgassetspicker Module
 
 To access this module from JavaScript, you would do the following:
 
-	var assetpicker = require("com.oxgcp.assetpicker");
+	var oxgassetspicker = require("com.oxgcp.assetspicker");
 
-The assetpicker variable is a reference to the Module object.	
+The oxgassetspicker variable is a reference to the Module object.	
 
 ## Reference
 

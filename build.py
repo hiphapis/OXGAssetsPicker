@@ -67,7 +67,7 @@ def generate_doc(config):
 	return documentation
 
 def compile_js(manifest,config):
-	js_file = os.path.join(cwd,'assets','com.oxgcp.assetpicker.js')
+	js_file = os.path.join(cwd,'assets','com.oxgcp.assetspicker.js')
 	if not os.path.exists(js_file): return	
 
 	from compiler import Compiler
@@ -86,7 +86,7 @@ def compile_js(manifest,config):
 
 	method += '\treturn filterDataInRange([NSData dataWithBytesNoCopy:data length:sizeof(data) freeWhenDone:NO], ranges[0]);'
 	
-	f = os.path.join(cwd,'Classes','ComOxgcpAssetpickerModuleAssets.m')
+	f = os.path.join(cwd,'Classes','ComOxgcpAssetspickerModuleAssets.m')
 	c = open(f).read()
 	templ_search = ' moduleAsset\n{\n'
 	idx = c.find(templ_search) + len(templ_search)
@@ -134,8 +134,8 @@ def validate_manifest():
 			if curvalue==defvalue: warn("please update the manifest key: '%s' to a non-default value" % key)
 	return manifest,path
 
-ignoreFiles = ['.DS_Store','.gitignore','libTitanium.a','titanium.jar','README','com.oxgcp.assetpicker.js']
-ignoreDirs = ['.DS_Store','.svn','.git','CVSROOT']
+ignoreFiles = ['.DS_Store','.gitignore','libTitanium.a','titanium.jar','README.md','README','com.oxgcp.assetspicker.js']
+ignoreDirs = ['.DS_Store','.svn','.git','CVSROOT','screenshots']
 
 def zip_dir(zf,dir,basepath,ignore=[]):
 	for root, dirs, files in os.walk(dir):
