@@ -12,9 +12,9 @@
 -(void)dealloc {
     RELEASE_TO_NIL(assets);
     RELEASE_TO_NIL(tableView);
-    RELEASE_TO_NIL(groupName);
-    RELEASE_TO_NIL(filter);
-    RELEASE_TO_NIL(backgroundColor);
+    // RELEASE_TO_NIL(groupName);
+    // RELEASE_TO_NIL(filter);
+    // RELEASE_TO_NIL(backgroundColor);
     [super dealloc];
 }
 
