@@ -16,25 +16,28 @@ var album = OXGAssetsPicker.createAlbumView({
 });
 albumWin.add(album);
 album.addEventListener('album:selected', function(ae) {
-		console.log(ae);
+   console.log(ae);
 
-		var photoWin = Titanium.UI.createWindow({ title: ae.groupName });
-		var photo = OXGAssetsPicker.createPhotoView({
-				groupName: ae.groupName, // load all photos If you remove property of groupName
-				filter: "photo", // or "video", "all"
-				top:0,
-				left:0,
-				width:320,
-				height:460,
-				backgroundColor:'#ffffff',
-				multiple: true,
-		});
-		photoWin.add(photo);
-		photo.addEventListener('photo:selected', function(pe) {
-			console.log(pe);
-		});
-		
-		nav.open(photoWin, { animated:true });
+   var photoWin = Titanium.UI.createWindow({ title: ae.groupName });
+   var photo = OXGAssetsPicker.createPhotoView({
+       groupName: ae.groupName, // load all photos If you remove property of groupName
+       filter: "photo", // or "video", "all"
+       top:0,
+       left:0,
+       width:320,
+       height:460,
+       backgroundColor:'#ffffff',
+       multiple: true,
+   });
+   photoWin.add(photo);
+   photo.addEventListener('photo:selected', function(pe) {
+     photo.selectedPhotos = [0,1,2];
+        
+     // console.log(pe);
+   });
+   
+   
+   nav.open(photoWin, { animated:true });
 });
 
 win.open();

@@ -21,6 +21,7 @@
     NSString *groupName;
     NSString *filter;
     UIColor *backgroundColor;
+    NSArray *selectedPhotos;
 }
 
 @end

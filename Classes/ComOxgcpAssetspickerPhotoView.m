@@ -26,8 +26,22 @@
     groupName = _groupName;
 }
 
-- (id)setFilter:(id)_filter {
+- (id)setFilter_:(id)_filter {
     filter = _filter;
+}
+
+- (id)setSelectedPhotos_:(id)_selectedPhotos {
+    selectedPhotos = [NSArray arrayWithArray:_selectedPhotos];
+    
+    for (unsigned i = 0; i < selectedPhotos.count; i++) {
+        int key = [[selectedPhotos objectAtIndex:i] intValue];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[assets objectAtIndex:key]];
+        [dic setValue:@"true" forKey:@"selected"];        
+        [assets replaceObjectAtIndex:key withObject:dic];
+
+        [[self tableView] reloadData];
+    }
+
 }
 
 - (id)setBackgroundColor_:(id)_backgroundColor {
@@ -47,7 +61,7 @@
         tableView = [[UITableView alloc] initWithFrame:[self frame]];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.rowHeight = 79.0f;
+        tableView.rowHeight = 105.0f;
         tableView.scrollsToTop = YES;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
@@ -236,8 +250,8 @@
     }
     
     // Configure the cell...
-    NSUInteger firstPhotoInCell = indexPath.row * 4;
-    NSUInteger lastPhotoInCell  = firstPhotoInCell + 4;
+    NSUInteger firstPhotoInCell = indexPath.row * 3;
+    NSUInteger lastPhotoInCell  = firstPhotoInCell + 3;
     
     if (assets.count <= firstPhotoInCell) {
         //        NSLog(@"We are out of range, asking to start with photo %d but we only have %d", firstPhotoInCell, assets.count);
@@ -261,7 +275,7 @@
         button.tag = firstPhotoInCell + currentPhotoIndex;
         
         NSString *resourceurl = [[NSBundle mainBundle] resourcePath];
-        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/modules/%@/%@", resourceurl, @"com.oxgcp.assetspicker", @"Overlay.png"]];
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/modules/%@/%@", resourceurl, @"com.oxgcp.assetspicker", @"photo_select.png"]];
         UIImage *overlayImage = [UIImage imageWithContentsOfFile:[url path]];
         [button setImage:overlayImage forState:UIControlStateSelected];
         [button setSelected:[[dic objectForKey:@"selected"] isEqualToString:@"true"]];
@@ -271,9 +285,9 @@
         
         // Frame
         CGRect frame = button.frame;
-        frame.size = CGSizeMake(75, 75);
-        frame.origin.y = 4;
-        frame.origin.x = (currentPhotoIndex * (75 + 4)) + 4;
+        frame.size = CGSizeMake(100, 100);
+        frame.origin.y = 5;
+        frame.origin.x = (currentPhotoIndex * (100 + 5)) + 5;
         button.frame = frame;
         thumbView.frame = frame;
         
@@ -290,7 +304,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ceil((float)assets.count / 4); // there are four photos per row.
+    return ceil((float)assets.count / 3);
 }
 
 

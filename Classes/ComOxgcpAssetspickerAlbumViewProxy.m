@@ -10,6 +10,8 @@
 
 @implementation ComOxgcpAssetspickerAlbumViewProxy
 
-
+- (id)aa:(id)args {
+  NSLog(@"aa");
+}
 
 @end

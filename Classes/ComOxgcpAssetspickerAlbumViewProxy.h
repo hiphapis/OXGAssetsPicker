@@ -10,4 +10,6 @@
 
 }
 
+- (id)aa:(id)args;
+
 @end
