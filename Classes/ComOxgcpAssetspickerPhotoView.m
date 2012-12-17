@@ -33,15 +33,21 @@
 - (id)setSelectedPhotos_:(id)_selectedPhotos {
     selectedPhotos = [NSArray arrayWithArray:_selectedPhotos];
     
+    for (unsigned i = 0; i < assets.count; i++) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[assets objectAtIndex:i]];
+        [dic setValue:@"false" forKey:@"selected"];
+        [assets replaceObjectAtIndex:i withObject:dic];
+
+    }
+    
     for (unsigned i = 0; i < selectedPhotos.count; i++) {
         int key = [[selectedPhotos objectAtIndex:i] intValue];
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[assets objectAtIndex:key]];
         [dic setValue:@"true" forKey:@"selected"];        
         [assets replaceObjectAtIndex:key withObject:dic];
-
-        [[self tableView] reloadData];
     }
-
+    
+    [[self tableView] reloadData];
 }
 
 - (id)setBackgroundColor_:(id)_backgroundColor {

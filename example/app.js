@@ -31,7 +31,7 @@ album.addEventListener('album:selected', function(ae) {
    });
    photoWin.add(photo);
    photo.addEventListener('photo:selected', function(pe) {
-     photo.selectedPhotos = [0,1,2];
+     photo.selectedPhotos = [1,2];
         
      // console.log(pe);
    });
