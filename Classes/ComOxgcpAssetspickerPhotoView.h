@@ -22,6 +22,7 @@
     NSString *filter;
     UIColor *backgroundColor;
     NSArray *selectedPhotos;
+    NSString *sort;
 }
 
 @end

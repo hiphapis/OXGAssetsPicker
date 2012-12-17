@@ -27,6 +27,7 @@ album.addEventListener('album:selected', function(ae) {
        width:320,
        height:460,
        backgroundColor:'#ffffff',
+       sort:"recent",
        multiple: true,
    });
    photoWin.add(photo);

@@ -30,6 +30,10 @@
     filter = _filter;
 }
 
+- (id)setSort_:(id)_sort {
+    sort = _sort;
+}
+
 - (id)setSelectedPhotos_:(id)_selectedPhotos {
     selectedPhotos = [NSArray arrayWithArray:_selectedPhotos];
     
@@ -120,10 +124,16 @@
                                              @"selected",
                                              nil];
                         
-                        [assets addObject:dic];
+                        if ([sort isEqualToString:@"recent"]) {
+                            [assets insertObject:dic atIndex:0];
+                        }
+                        else {
+                            [assets addObject:dic];
+                        }                    
                     }
                 }];
-                //                NSLog(@"Asset[Photo]: loadAssets #1-4");
+                
+//                NSLog(@"Asset[Photo]: loadAssets #1-4");
                 [[self tableView] reloadData];
             }
         }
