@@ -274,7 +274,7 @@
     NSUInteger lastPhotoIndex = MIN(lastPhotoInCell, assets.count);
 
     for ( ; firstPhotoInCell + currentPhotoIndex < lastPhotoIndex ; currentPhotoIndex++) {
-          NSLog(@"%d[%d]=>%d:%d", indexPath.row, firstPhotoInCell + currentPhotoIndex, lastPhotoIndex, currentPhotoIndex);
+          // NSLog(@"%d[%d]=>%d:%d", indexPath.row, firstPhotoInCell + currentPhotoIndex, lastPhotoIndex, currentPhotoIndex);
 
 
           NSDictionary *dic = [assets objectAtIndex:firstPhotoInCell + currentPhotoIndex];
