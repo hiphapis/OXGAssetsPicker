@@ -47,7 +47,7 @@
     for (unsigned i = 0; i < selectedPhotos.count; i++) {
         int key = [[selectedPhotos objectAtIndex:i] intValue];
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[assets objectAtIndex:key]];
-        [dic setValue:@"true" forKey:@"selected"];        
+        [dic setValue:@"true" forKey:@"selected"];
         [assets replaceObjectAtIndex:key withObject:dic];
     }
     
@@ -71,7 +71,6 @@
         tableView = [[UITableView alloc] initWithFrame:[self frame]];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.rowHeight = 105.0f;
         tableView.scrollsToTop = YES;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
@@ -257,60 +256,61 @@
 #pragma mark Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"AssetPickerPhotoRow";
+    static NSString *CellIdentifier = @"AssetsPickerPhotoRow";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Configure the cell...
     NSUInteger firstPhotoInCell = indexPath.row * 3;
     NSUInteger lastPhotoInCell  = firstPhotoInCell + 3;
     
     if (assets.count <= firstPhotoInCell) {
-        //        NSLog(@"We are out of range, asking to start with photo %d but we only have %d", firstPhotoInCell, assets.count);
+        NSLog(@"We are out of range, asking to start with photo %d but we only have %d", firstPhotoInCell, assets.count);
         return nil;
     }
     
     NSUInteger currentPhotoIndex = 0;
     NSUInteger lastPhotoIndex = MIN(lastPhotoInCell, assets.count);
+
     for ( ; firstPhotoInCell + currentPhotoIndex < lastPhotoIndex ; currentPhotoIndex++) {
-        NSDictionary *dic = [assets objectAtIndex:firstPhotoInCell + currentPhotoIndex];
+          NSLog(@"%d[%d]=>%d:%d", indexPath.row, firstPhotoInCell + currentPhotoIndex, lastPhotoIndex, currentPhotoIndex);
+
+
+          NSDictionary *dic = [assets objectAtIndex:firstPhotoInCell + currentPhotoIndex];
         
-        //        NSLog(@"current: %d %@", firstPhotoInCell + currentPhotoIndex, dic);
+          //        NSLog(@"current: %d %@", firstPhotoInCell + currentPhotoIndex, dic);
         
-        // Thumbnail
-        UIImage *thumbnail = [dic objectForKey:@"thumbnail"];
-        UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbnail];
-        
-        
-        // Button
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.tag = firstPhotoInCell + currentPhotoIndex;
-        
-        NSString *resourceurl = [[NSBundle mainBundle] resourcePath];
-        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/modules/%@/%@", resourceurl, @"com.oxgcp.assetspicker", @"photo_select.png"]];
-        UIImage *overlayImage = [UIImage imageWithContentsOfFile:[url path]];
-        [button setImage:overlayImage forState:UIControlStateSelected];
-        [button setSelected:[[dic objectForKey:@"selected"] isEqualToString:@"true"]];
-        
-        [button addTarget:self action:@selector(selectPhoto:) forControlEvents:UIControlEventTouchUpInside];
+          // Thumbnail
+          UIImage *thumbnail = [dic objectForKey:@"thumbnail"];
+          UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbnail];
         
         
-        // Frame
-        CGRect frame = button.frame;
-        frame.size = CGSizeMake(100, 100);
-        frame.origin.y = 5;
-        frame.origin.x = (currentPhotoIndex * (100 + 5)) + 5;
-        button.frame = frame;
-        thumbView.frame = frame;
+          // Button
+          UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+          button.tag = firstPhotoInCell + currentPhotoIndex;
+        
+          NSString *resourceurl = [[NSBundle mainBundle] resourcePath];
+          NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/modules/%@/%@", resourceurl, @"com.oxgcp.assetspicker", @"photo_select.png"]];
+          UIImage *overlayImage = [UIImage imageWithContentsOfFile:[url path]];
+          [button setImage:overlayImage forState:UIControlStateSelected];
+          [button setSelected:[[dic objectForKey:@"selected"] isEqualToString:@"true"]];
+        
+          [button addTarget:self action:@selector(selectPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+          // Frame
+          CGRect frame = button.frame;
+          frame.size = CGSizeMake(100, 100);
+          frame.origin.y = 5;
+          frame.origin.x = (currentPhotoIndex * (100 + 5)) + 5;
+          button.frame = frame;
+          thumbView.frame = frame;
         
         
         
-        [cell addSubview:thumbView];
-        [cell addSubview:button];
+          [cell addSubview:thumbView];
+          [cell addSubview:button];
     }
     return cell;
 }
@@ -323,5 +323,11 @@
     return ceil((float)assets.count / 3);
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == ceil((float)assets.count / 3) - 1) {
+        return 110.0f;
+    }
+    return 105.0f;
+}
 
 @end
