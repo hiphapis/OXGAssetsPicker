@@ -17,12 +17,15 @@
     UITableView *tableView;
     NSMutableArray *assets;
     
+    int selectedPhotoCount;
+    
     BOOL multiple;
     NSString *groupName;
     NSString *filter;
     UIColor *backgroundColor;
     NSArray *selectedPhotos;
     NSString *sort;
+    int limit;
 }
 
 @end

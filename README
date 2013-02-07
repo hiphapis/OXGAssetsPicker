@@ -7,6 +7,7 @@ Features
 - Album View
 - Photo View
 - Support EXIF
+- Click Event Base
 
 Screenshots
 -----------
@@ -48,6 +49,7 @@ Follow this code (from example/app.js)
 					width:320,
 					height:460,
 					multiple: true,
+					limit: 2,
 			});
 			photoWin.add(photo);
 			photo.addEventListener('photo:selected', function(pe) {
@@ -105,7 +107,11 @@ PHOTO
 
 ### Property
 - groupName: (optional)
-- filter: (optional) photo, video, all
+- filter: (optional) *all, photo, video
+- multiple: (optional) *false, true
+- sort: (optional) *nil, recent => nil is created_at asc
+- limit: (optional) *nil, 
+- selectedPhotos: (optional) *nil => array of selected photo index [1,2,3]
 
 ### Return
 - image

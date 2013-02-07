@@ -34,6 +34,10 @@
     sort = _sort;
 }
 
+- (id)setLimit_:(id)_limit {
+    limit = [_limit intValue];
+}
+
 - (id)setSelectedPhotos_:(id)_selectedPhotos {
     selectedPhotos = [NSArray arrayWithArray:_selectedPhotos];
     
@@ -99,10 +103,10 @@
             //            NSLog(@"Asset[Photo]: loadAssets #1-1");
             if (groupName == nil || [[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:groupName]) {
                 //                NSLog(@"Asset[Photo]: loadAssets #1-2");
-                if (filter == @"photo") {
+                if ([filter isEqualToString:@"photo"]) {
                     [group setAssetsFilter:[ALAssetsFilter allPhotos]];
                 }
-                else if (filter == @"video") {
+                else if ([filter isEqualToString:@"video"]) {
                     [group setAssetsFilter:[ALAssetsFilter allVideos]];
                 }
                 
@@ -153,12 +157,26 @@
 }
 
 -(void)selectPhoto:(UIButton *)button {
+    NSLog(@"limit: %d", limit);
+    
+    NSLog(@"selectedPhotoCount Before: %d", selectedPhotoCount);
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[assets objectAtIndex:button.tag]];
     
     if (![[dic objectForKey:@"selected"] isEqualToString:@"true"]) {
         NSLog(@"Asset[Photo]: CLICK - Selected");
+        
+        if (limit != 0 && selectedPhotoCount >= limit) {
+            return;
+        }
+        else {
+            selectedPhotoCount += 1;
+        }
+        
+        NSLog(@"selectedPhotoCount After+: %d", selectedPhotoCount);
+
         [dic setValue:@"true" forKey:@"selected"];
         [assets replaceObjectAtIndex:button.tag withObject:dic];
+        
         
         if (multiple) {
             [button setSelected:YES];
@@ -230,9 +248,13 @@
     }
     else {
         NSLog(@"Asset[Photo]: CLICK - DeSelected");
+
+        selectedPhotoCount -= 1;
+        NSLog(@"selectedPhotoCount After-: %d", selectedPhotoCount);
         
         [dic setValue:@"false" forKey:@"selected"];
         [assets replaceObjectAtIndex:button.tag withObject:dic];
+        
         
         [button setSelected:NO];
         

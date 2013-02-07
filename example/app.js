@@ -29,11 +29,11 @@ album.addEventListener('album:selected', function(ae) {
        backgroundColor:'#ffffff',
        sort:"recent",
        multiple: true,
+       limit: 2,
    });
    photoWin.add(photo);
    photo.addEventListener('photo:selected', function(pe) {
      // photo.selectedPhotos = [1,2];
-        
      console.log(pe);
    });
    
