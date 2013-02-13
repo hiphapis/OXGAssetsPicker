@@ -166,6 +166,7 @@
         NSLog(@"Asset[Photo]: CLICK - Selected");
         
         if (limit != 0 && selectedPhotoCount >= limit) {
+            [self.proxy fireEvent:@"photo:limit"];
             return;
         }
         else {

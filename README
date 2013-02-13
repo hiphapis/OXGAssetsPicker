@@ -55,7 +55,11 @@ Follow this code (from example/app.js)
 			photo.addEventListener('photo:selected', function(pe) {
 				console.log(pe);
 			});
-		
+			photo.addEventListener('photo:limit', function(pe) {
+				console.log("limit");
+			});
+
+
 			nav.open(photoWin, { animated:true });
 	});
 

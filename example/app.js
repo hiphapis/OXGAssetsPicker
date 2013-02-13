@@ -33,9 +33,13 @@ album.addEventListener('album:selected', function(ae) {
    });
    photoWin.add(photo);
    photo.addEventListener('photo:selected', function(pe) {
-     // photo.selectedPhotos = [1,2];
      console.log(pe);
    });
+
+   photo.addEventListener('photo:limit', function(pe) {
+     console.log("limit");
+   });
+
    
    
    nav.open(photoWin, { animated:true });
