@@ -193,7 +193,7 @@
                 
                 
                 //EXIF
-                NSMutableDictionary *dictMeta = [[NSMutableDictionary alloc] init];
+                NSMutableDictionary *dictMeta = [[[NSMutableDictionary alloc] init] autorelease];
                 
                 NSDictionary *metadata = [[result defaultRepresentation] metadata];
                 NSDictionary *exif = [metadata objectForKey:@"{Exif}"];
@@ -306,7 +306,7 @@
         
           // Thumbnail
           UIImage *thumbnail = [dic objectForKey:@"thumbnail"];
-          UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbnail];
+          UIImageView *thumbView = [[[UIImageView alloc] initWithImage:thumbnail] autorelease];
         
         
           // Button
